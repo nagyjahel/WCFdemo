@@ -4,24 +4,18 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OperationServiceReference;
 using Site.Models;
-using CalculationServiceReference;
 
 namespace Site.Controllers
 {
     public class HomeController : Controller
     {
-        private CalculationServiceClient calculationServiceClient = new CalculationServiceClient();
+        private OperationServiceClient operationServiceClient = new OperationServiceClient();
 
         public IActionResult Index()
         {
-            
 
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 
@@ -32,87 +26,47 @@ namespace Site.Controllers
         }
 
 
-        [Route("AddTwoIntegers")]
-        public JsonResult AddTwoIntegers(int a, int b)
+        [Route("/numbers/plus")]
+        public JsonResult Add(double value1, double value2)
         {
-             return Json(new
-             {
-                 success = true,
-                 msg = calculationServiceClient.AddTwoIntegersAsync(a, b)
+            return Json(new
+            {
+                success = true,
+                result = operationServiceClient.AddAsync(value1, value2).Result
              });
         }
 
-        [Route("AddTwoDoubles")]
-        public JsonResult AddTwoDoubles(double a, double b)
+        [Route("numbers/divide")]
+        public JsonResult Divide(double value1, double value2)
         {
             return Json(new
             {
                 success = true,
-                msg = calculationServiceClient.AddTwoDoublesAsync(a, b)
+                result = operationServiceClient.DivideAsync(value1, value2).Result
             });
         }
-
-        [Route("DivideTwoDoubles")]
-        public JsonResult DivideTwoDoubles(double a, double b)
+        
+        [Route("numbers/multiply")]
+        public JsonResult Multiply(double value1, double value2)
         {
             return Json(new
             {
                 success = true,
-                msg = calculationServiceClient.DivideTwoDoublesAsync(a, b)
+                result = operationServiceClient.MultiplyAsync(value1, value2).Result
             });
         }
 
-        [Route("DivideTwoIntegers")]
-        public JsonResult DivideTwoIntegers(int a, int b)
+        [Route("numbers/minus")]
+        public JsonResult Substract(double value1, double value2)
         {
             return Json(new
             {
                 success = true,
-                msg = calculationServiceClient.DivideTwoIntegersAsync(a, b)
+                result = operationServiceClient.SubstractAsync(value1, value2).Result
             });
         }
 
-
-        [Route("MultiplyTwoDoubles")]
-        public JsonResult MultiplyTwoDoubles(int a, int b)
-        {
-            return Json(new
-            {
-                success = true,
-                msg = calculationServiceClient.MultiplyTwoDoublesAsync(a, b)
-            });
-        }
-
-
-        [Route("MultiplyTwoIntegers")]
-        public JsonResult MultiplyTwoIntegers(int a, int b)
-        {
-            return Json(new
-            {
-                success = true,
-                msg = calculationServiceClient.MultiplyTwoIntegersAsync(a, b)
-            });
-        }
-
-        [Route("SubstractTwoDoubles")]
-        public JsonResult SubstractTwoDoubles(int a, int b)
-        {
-            return Json(new
-            {
-                success = true,
-                msg = calculationServiceClient.SubstractTwoDoublesAsync(a, b)
-            });
-        }
-
-        [Route("SubstractTwoIntegers")]
-        public JsonResult SubstractTwoIntegers(int a, int b)
-        {
-            return Json(new
-            {
-                success = true,
-                msg = calculationServiceClient.SubstractTwoIntegersAsync(a, b)
-            });
-        }
+    
 
 
 

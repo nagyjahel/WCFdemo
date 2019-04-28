@@ -2,8 +2,8 @@
   "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
   "Version": "15.0.20628.921",
   "ExtendedData": {
-    "Uri": "http://localhost:59127/CalculationService.svc",
-    "Namespace": "CalculationServiceReference",
+    "Uri": "http://localhost:50946/OperationService.svc?singleWsdl",
+    "Namespace": "OperationServiceReference",
     "SelectedAccessLevelForGeneratedClass": "Public",
     "GenerateMessageContract": false,
     "ReuseTypesinReferencedAssemblies": true,
@@ -18,7 +18,7 @@
     },
     "CheckedReferencedAssemblies": [],
     "InstanceId": null,
-    "Name": "CalculationServiceReference",
+    "Name": "OperationServiceReference",
     "Metadata": {}
   }
 }
